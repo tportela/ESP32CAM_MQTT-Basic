@@ -5,7 +5,7 @@ Puedes encontrar el curso correspondiente a este ejercicio en el siguiente enlac
 
 https://edu.codigoiot.com/
 
-###Requisitos
+### Requisitos
 Para que el código de este repositorio funcione, es necesario contar con lo siguiente:
 
 - ESP32CAM AI-Thinker
@@ -18,7 +18,7 @@ Para que el código de este repositorio funcione, es necesario contar con lo sig
 - NodeRed corriendo de forma local en el puerto 1880
 - Nodos Dashboard para NodeRed
 
-###Guías
+### Guías
 Para configurar correctamente la IDE de Arduino para trabajar con el ESP32CAM, puedes consultar el siguiente enlace.
 
 https://edu.codigoiot.com/course/view.php?id=850
@@ -39,7 +39,7 @@ El flow de NodeRed lee en el tema `esp32/data` y publica en el tema `esp32/outpu
 
 Los nodos switch y text de la sección dashboard deberán tener correctamente configurados el tab y group en el que se visualizarán.
 
-###Funcionamiento
+### Funcionamiento
 
 Para observar el funcionamiento de este proyecto deberás realizar lo siguiente.
 
