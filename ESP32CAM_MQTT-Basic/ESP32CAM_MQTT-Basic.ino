@@ -18,20 +18,20 @@
 #include <PubSubClient.h> //Biblioteca para conexion MQTT
 
 //Datos de WiFi
-const char* ssid = "nombre_de_red";  // Aquí debes poner el nombre de tu red
-const char* password = "11223344";  // Aquí debes poner la contraseña de tu red
+const char* ssid = "********";  // Aquí debes poner el nombre de tu red
+const char* password = "********";  // Aquí debes poner la contraseña de tu red
 
 //Datos del broker MQTT
-const char* mqtt_server = "192.168.1.100"; // Si estas en una red local, coloca la IP asignada, en caso contrario, coloca la IP publica
-IPAddress server(192,168,1,100);
+const char* mqtt_server = "127.0.0.1"; // Si estas en una red local, coloca la IP asignada, en caso contrario, coloca la IP publica
+IPAddress server(127,0,0,1);
 
 // Objetos
 WiFiClient espClient; // Este objeto maneja los datos de conexion WiFi
 PubSubClient client(espClient); // Este objeto maneja los datos de conexion al broker
 
 // Variables
-int flasflashLedPin = 33;  // Para indicar el estatus de conexión
-int statusLedPin = 4; // Para ser controlado por MQTT
+int flashLedPin = 4;  // Para indicar el estatus de conexión
+int statusLedPin = 33; // Para ser controlado por MQTT
 long timeNow, timeLast; // Variables de control de tiempo no bloqueante
 int data = 0; // Contador
 int wait = 5000;  // Indica la espera cada 5 segundos para envío de mensajes MQTT
@@ -53,9 +53,9 @@ void setup() {
   WiFi.begin(ssid, password); // Esta es la función que realiz la conexión a WiFi
  
   while (WiFi.status() != WL_CONNECTED) { // Este bucle espera a que se realice la conexión
-    digitalWrite (flashLedPin, HIGH);
+    digitalWrite (statusLedPin, HIGH);
     delay(500); //dado que es de suma importancia esperar a la conexión, debe usarse espera bloqueante
-    digitalWrite (flashLedPin, LOW);
+    digitalWrite (statusLedPin, LOW);
     Serial.print(".");  // Indicador de progreso
     delay (5);
   }
@@ -68,7 +68,7 @@ void setup() {
 
   // Si se logro la conexión, encender led
   if (WiFi.status () > 0){
-  digitalWrite (flashLedPin, HIGH);
+  digitalWrite (statusLedPin, LOW);
   }
   
   delay (1000); // Esta espera es solo una formalidad antes de iniciar la comunicación con el broker
@@ -130,11 +130,11 @@ void callback(char* topic, byte* message, unsigned int length) {
   if (String(topic) == "esp32/output") {  // En caso de recibirse mensaje en el tema esp32/output
     if(messageTemp == "true"){
       Serial.println("Led encendido");
-      digitalWrite(statusLedPin, LOW);
+      digitalWrite(flashLedPin, HIGH);
     }// fin del if (String(topic) == "esp32/output")
     else if(messageTemp == "false"){
       Serial.println("Led apagado");
-      digitalWrite(statusLedPin, HIGH);
+      digitalWrite(flashLedPin, LOW);
     }// fin del else if(messageTemp == "false")
   }// fin del if (String(topic) == "esp32/output")
 }// fin del void callback
