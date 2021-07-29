@@ -27,7 +27,7 @@ Para configurar correctamente tu broker mosquitto puedes consultar el siguiente 
 
 https://edu.codigoiot.com/course/view.php?id=818
 
-Para configurar correctamente NodeRed puedes consugar el siguiente enlace.
+Para configurar correctamente NodeRed puedes consultar el siguiente enlace.
 
 https://edu.codigoiot.com/course/view.php?id=817
 
